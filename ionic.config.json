@@ -1,0 +1,8 @@
+{
+  "name": "MyCV",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "ce90f363"
+}
