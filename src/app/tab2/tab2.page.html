@@ -1,17 +1,121 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>
+            Formulario de Oferta
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <!-- List of Input Items -->
+    <ion-list [formGroup]="formOffer">
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+        <ion-item [ngClass]="{'text-danger': hasErrors('nombres')}">
+            <ion-label position="floating">Nombres:</ion-label>
+            <ion-input formControlName="nombres" [(ngModel)]="offer.nombres"></ion-input>
+            <small *ngIf="hasErrors('nombres')" class="help-block text-danger">
+                <div *ngIf="formOffer.get('nombres').errors.required">Los nombres es un campo requerido.</div>
+                <div *ngIf="formOffer.get('nombres').errors.minlength">Los nombres es un campo que no puede contener menos de 10 caracteres de longitud.</div>
+                <div *ngIf="formOffer.get('nombres').errors.maxlength">Los nombres es un campo que no puede contener mas de 200 caracteres de longitud.</div>
+            </small>
+        </ion-item>
+
+        <ion-item [ngClass]="{'text-danger': hasErrors('cargo')}">
+            <ion-label position="floating">Cargo:</ion-label>
+            <ion-input formControlName="cargo" [(ngModel)]="offer.cargo"></ion-input>
+            <small *ngIf="hasErrors('cargo')" class="help-block text-danger">
+                <div *ngIf="formOffer.get('cargo').errors.required">El cargo es un campo requerido.</div>
+                <div *ngIf="formOffer.get('cargo').errors.minlength">El cargo es un campo que no puede contener menos de 10 caracteres de longitud.</div>
+                <div *ngIf="formOffer.get('cargo').errors.maxlength">El cargo es un campo que no puede contener mas de 200 caracteres de longitud.</div>
+            </small>
+        </ion-item>
+
+        <ion-item [ngClass]="{'text-danger': hasErrors('ciudad')}">
+            <ion-label position="floating">Ciudad:</ion-label>
+            <ion-select placeholder="Seleccionar Ciudad" formControlName="ciudad" [(ngModel)]="offer.ciudad">
+                <ion-select-option value="bogota">Bogota</ion-select-option>
+                <ion-select-option value="neiva">Neiva</ion-select-option>
+                <ion-select-option value="medellin">Medellin</ion-select-option>
+                <ion-select-option value="bucaramanga">Bucaramanga</ion-select-option>
+                <ion-select-option value="manizales">Manizales</ion-select-option>
+            </ion-select>
+            <small *ngIf="hasErrors('ciudad')" class="help-block text-danger">
+                <div *ngIf="formOffer.get('ciudad').errors.required">La ciudad es un campo requerido.</div>
+                <div *ngIf="formOffer.get('ciudad').errors.minlength">La ciudad es un campo que no puede contener menos de 10 caracteres de longitud.</div>
+                <div *ngIf="formOffer.get('ciudad').errors.maxlength">La ciudad es un campo que no puede contener mas de 200 caracteres de longitud.</div>
+            </small>
+        </ion-item>
+
+        <ion-item [ngClass]="{'text-danger': hasErrors('correo')}">
+            <ion-label position="floating">Correo:</ion-label>
+            <ion-input inputmode="email" formControlName="correo" [(ngModel)]="offer.correo"></ion-input>
+            <small *ngIf="hasErrors('correo')" class="help-block text-danger">
+                <div *ngIf="formOffer.get('correo').errors.required">El correo es un campo requerido.</div>
+                <div *ngIf="formOffer.get('correo').errors.minlength">El correo es un campo que no puede contener menos de 10 caracteres de longitud.</div>
+                <div *ngIf="formOffer.get('correo').errors.maxlength">El correo es un campo que no puede contener mas de 200 caracteres de longitud.</div>
+                <div *ngIf="formOffer.get('correo').errors.pattern">El correo electronico debe contener un formato apropiado.</div>
+            </small>
+        </ion-item>
+
+        <ion-item [ngClass]="{'text-danger': hasErrors('estudios')}">
+            <ion-label position="floating">Estudios:</ion-label>
+            <ion-textarea placeholder="Enter more information here..." rows="5" formControlName="estudios" [(ngModel)]="offer.estudios"></ion-textarea>
+            <small *ngIf="hasErrors('estudios')" class="help-block text-danger">
+                <div *ngIf="formOffer.get('estudios').errors.required">Los estudios es un campo requerido.</div>
+                <div *ngIf="formOffer.get('estudios').errors.minlength">Los estudios es un campo que no puede contener menos de 10 caracteres de longitud.</div>
+                <div *ngIf="formOffer.get('estudios').errors.maxlength">Los estudios es un campo que no puede contener mas de 200 caracteres de longitud.</div>
+            </small>
+        </ion-item>
+
+        <ion-item [ngClass]="{'text-danger': hasErrors('genero')}">
+            <ion-label position="floating">Genero:</ion-label>
+            <ion-select placeholder="Select One" formControlName="genero" [(ngModel)]="offer.genero">
+                <ion-select-option value="f">Mujer</ion-select-option>
+                <ion-select-option value="m">Hombre</ion-select-option>
+            </ion-select>
+            <small *ngIf="hasErrors('genero')" class="help-block text-danger">
+                <div *ngIf="formOffer.get('genero').errors.required">El genero es un campo requerido.</div>
+                <div *ngIf="formOffer.get('genero').errors.minlength">El genero es un campo que no puede contener menos de 10 caracteres de longitud.</div>
+                <div *ngIf="formOffer.get('genero').errors.maxlength">El genero es un campo que no puede contener mas de 200 caracteres de longitud.</div>
+            </small>
+        </ion-item>
+
+        <ion-item [ngClass]="{'text-danger': hasErrors('fechaNacimiento')}">
+            <ion-label position="floating">Fecha De Nacimiento:</ion-label>
+            <ion-datetime displayFormat="MM/DD/YYYY" min="1994-03-14" max="2020-01-01" formControlName="fechaNacimiento" [(ngModel)]="offer.fechaNacimiento"></ion-datetime>
+            <small *ngIf="hasErrors('fechaNacimiento')" class="help-block text-danger">
+                <div *ngIf="formOffer.get('fechaNacimiento').errors.required">La fecha de nacimiento es un campo requerido.</div>
+                <div *ngIf="formOffer.get('fechaNacimiento').errors.minlength">La fecha de nacimiento es un campo que no puede contener menos de 10 caracteres de longitud.</div>
+                <div *ngIf="formOffer.get('fechaNacimiento').errors.maxlength">La fecha de nacimiento es un campo que no puede contener mas de 200 caracteres de longitud.</div>
+            </small>
+        </ion-item>
+
+        <ion-item [ngClass]="{'text-danger': hasErrors('descripcionProfesional')}">
+            <ion-label position="floating">Descripción Profesional:</ion-label>
+            <ion-textarea placeholder="Enter more information here..." rows="5" formControlName="descripcionProfesional" [(ngModel)]="offer.descripcionProfesional"></ion-textarea>
+            <small *ngIf="hasErrors('descripcionProfesional')" class="help-block text-danger">
+                <div *ngIf="formOffer.get('descripcionProfesional').errors.required">La descripción profesional es un campo requerido.</div>
+                <div *ngIf="formOffer.get('descripcionProfesional').errors.minlength">La descripción profesional es un campo que no puede contener menos de 10 caracteres de longitud.</div>
+                <div *ngIf="formOffer.get('descripcionProfesional').errors.maxlength">La descripción profesional es un campo que no puede contener mas de 200 caracteres de longitud.</div>
+            </small>
+        </ion-item>
+
+        <ion-item [ngClass]="{'text-danger': hasErrors('descripcionPersonal')}">
+            <ion-label position="floating">Descripción Personal:</ion-label>
+            <ion-textarea placeholder="Enter more information here..." rows="5" formControlName="descripcionPersonal" [(ngModel)]="offer.descripcionPersonal"></ion-textarea>
+            <small *ngIf="hasErrors('descripcionPersonal')" class="help-block text-danger">
+                <div *ngIf="formOffer.get('descripcionPersonal').errors.required">La descripción personal es un campo requerido.</div>
+                <div *ngIf="formOffer.get('descripcionPersonal').errors.minlength">La descripción personal es un campo que no puede contener menos de 10 caracteres de longitud.</div>
+                <div *ngIf="formOffer.get('descripcionPersonal').errors.maxlength">La descripción personal es un campo que no puede contener mas de 200 caracteres de longitud.</div>
+            </small>
+        </ion-item>
+        <br><br>
+        <ion-button expand="full" (click)="addOffer()" [disabled]="formOffer.invalid">Aceptar</ion-button>
+        <br><br><br>
+    </ion-list>
+
+
+
+
+
 </ion-content>
