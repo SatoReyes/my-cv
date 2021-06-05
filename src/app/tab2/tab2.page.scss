@@ -1,3 +1,41 @@
 .text-danger {
-    color: orangered;
+    color: #ff4501;
+}
+
+.text-error {
+    text-align: center;
+}
+
+:host {
+    --border-color: var(--ion-item-border-color, var(--ion-border-color, var(--ion-color-step-150, rgba(0, 0, 0, 0.13))));
+    .input-special {
+        border: solid 2px;
+        margin: 10px;
+        width: 100%;
+        text-align: center;
+    }
+    ion-item {
+        --inner-border-width: 0px 0px 0px 0px;
+    }
+    .label-special {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: left;
+    }
+    .ion-col-special {
+        padding-bottom: 0px !important;
+    }
+    .ion-grid-special {
+        padding-left: 20px;
+    }
+}
+
+:host {
+    ion-button {
+        padding: 0px;
+        margin: 0px;
+        height: 30px;
+        border-radius: 15px;
+    }
 }

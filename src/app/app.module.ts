@@ -6,9 +6,10 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { StoreModule } from '@ngrx/store';
 import  {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { IonicStorageModule } from '@ionic/storage-angular';
+import { offerReducer } from './store/offers/offer.reducer';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -18,7 +19,11 @@ import { IonicStorageModule } from '@ionic/storage-angular';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    IonicStorageModule.forRoot()],
+    IonicStorageModule.forRoot(),
+    StoreModule.forRoot({
+        offer:offerReducer
+      })
+    ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
